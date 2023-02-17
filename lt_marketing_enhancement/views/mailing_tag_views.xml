@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<odoo>
+    <!-- mailing.tag views -->
+    <record id="mailing_tag_view_form" model="ir.ui.view">
+        <field name="name">mailing.tag.view.form</field>
+        <field name="model">mailing.tag</field>
+        <field name="arch" type="xml">
+            <form string="Tags">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" placeholder="e.g. Services"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="send_double_opt_in"/>
+                            <field name="color" required="True" widget="color_picker"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!--TREE VIEW-->
+    <record id="mailing_tag_view_tree" model="ir.ui.view">
+        <field name="name">mailing.tag.view.tree</field>
+        <field name="model">mailing.tag</field>
+        <field name="arch" type="xml">
+            <tree string="Tags" editable="bottom" sample="1">
+                <field name="name"/>
+                <field name="send_double_opt_in"/>
+                <field name="color" widget="color_picker" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Tags Configuration -->
+    <record id="mailing_tag_action" model="ir.actions.act_window">
+        <field name="name">Tags</field>
+        <field name="res_model">mailing.tag</field>
+        <field name="view_id" ref="mailing_tag_view_tree"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            Create Mailing Tags
+            </p><p>
+            Use Tags to manage and track your mailings
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+        id="menu_mailing_tags"
+        name="Mailing Tags"
+        action="mailing_tag_action"
+        parent="mass_mailing.mass_mailing_configuration"
+        sequence="5"/>
+</odoo>

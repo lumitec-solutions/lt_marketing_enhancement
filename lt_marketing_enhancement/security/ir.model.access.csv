@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mailing_tag,mailing.tag,model_mailing_tag,mass_mailing.group_mass_mailing_user,1,1,1,1
+access_mailing_contact_token_manager,mailing.contact.token,model_mailing_contact_token,mass_mailing.group_mass_mailing_user,1,1,1,1

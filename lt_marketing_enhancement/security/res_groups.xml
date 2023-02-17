@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="can_manually_set_double_opt_in_mailing" model="res.groups">
+        <field name="name">Can Manually set Double Opt in for Mailing Contacts.</field>
+    </record>
+</odoo>

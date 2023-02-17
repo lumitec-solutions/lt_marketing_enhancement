@@ -22,6 +22,7 @@
         'utm',
         'calendar',
         'event',
+        'website'
     ],
     'data': [
         'data/cron.xml',

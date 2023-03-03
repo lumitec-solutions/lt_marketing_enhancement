@@ -28,7 +28,7 @@ class MailingContact(models.Model):
     def _compute_can_set_double_opt_in(self):
         for record in self:
             if record.user_has_groups(
-                    'lt_double_opt_in.can_manually_set_double_opt_in_mailing'):
+                    'lt_marketing_enhancement.can_manually_set_double_opt_in_mailing'):
                 record.can_manually_set_double_opt_in = True
             else:
                 record.can_manually_set_double_opt_in = False
@@ -224,11 +224,11 @@ class MailingContact(models.Model):
         if self.double_opt_in or not self.email:
             return
         conf_send_double_opt_in = self.env['ir.config_parameter'].sudo().get_param(
-            'lt_double_opt_in.send_double_opt_in')
+            'lt_marketing_enhancement.send_double_opt_in')
         for tag in self.category_ids:
             if tag.send_double_opt_in and conf_send_double_opt_in:
                 template = self.env.ref(
-                    'lt_double_opt_in.lt_double_opt_in_email_template')
+                    'lt_marketing_enhancement.lt_double_opt_in_email_template')
                 template.send_mail(self.id, force_send=True)
                 return
 
@@ -243,12 +243,12 @@ class MailingContact(models.Model):
     def action_update_mailing_contact(self):
         """This function is used to update mailing contact"""
         send_double_optin = self.env['ir.config_parameter'].sudo().get_param(
-            'lt_double_opt_in.send_double_opt_in')
+            'lt_marketing_enhancement.send_double_opt_in')
         send_double_optin_mail = False
         if send_double_optin:
             send_double_optin_mail = True
             self.env["ir.config_parameter"].set_param(
-                "lt_double_opt_in.send_double_opt_in", False)
+                "lt_marketing_enhancement.send_double_opt_in", False)
         leads = self.env['crm.lead'].search([])
         counter = 0
         total_count = len(leads)
@@ -270,5 +270,5 @@ class MailingContact(models.Model):
         _logger.info('Processed %d of %d contacts', counter, total_count)
         if send_double_optin_mail == True:
             self.env["ir.config_parameter"].set_param(
-                "lt_double_opt_in.send_double_opt_in", True)
+                "lt_marketing_enhancement.send_double_opt_in", True)
         return True

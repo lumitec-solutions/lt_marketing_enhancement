@@ -11,4 +11,4 @@ class ResConfigSettings(models.TransientModel):
     _inherit = 'res.config.settings'
 
     send_double_opt_in = fields.Boolean(string="Send Double Opt in",
-                                        config_parameter='lt_double_opt_in.send_double_opt_in')
+                                        config_parameter='lt_marketing_enhancement.send_double_opt_in')
